@@ -1,23 +1,680 @@
-
-
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <h1> Hello Swaroop </h1>
-<meta charset="utf-8">
-<title>JavaScript Automatic Page Redirect</title>
-<script type="text/javascript">
-    function pageRedirect() {
-        window.location.replace("login.html");
-    }      
-    setTimeout("pageRedirect()", 10000);
-</script>
+  <script data-require="angularjs@1.6.*" data-semver="1.6.4" src="https://code.angularjs.org/1.6.4/angular.min.js"></script>
+  <script data-require="angular-animate@1.6.*" data-semver="1.6.5" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+  <script data-require="angular-touch@1.6.*" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-touch.js"></script>
+  <script data-require="ui-bootstrap@*" data-semver="2.5.0" src="https://cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-2.5.0.js"></script>
+  <link data-require="bootstrap@*" data-semver="4.1.3" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link data-require="Slider" href="https://www.npmjs.com/package/@syncfusion/ej2-buttons" />
+  <style>
+    .header {
+      background-color: #002e61;
+    }
+    
+    .reset {
+      float: right;
+      color: grey;
+    }
+    
+    .client,
+    .btn {
+      margin: 10px;
+    }
+    
+    .row1 {
+      padding: 15px;
+      background-color: #eef0f4;
+      padding-bottom: 35px;
+    }
+    
+    .row1 a {
+      margin: 10px
+    }
+    
+    .client,
+    .reset {
+      font-weight: bold;
+    }
+    
+    .row1 .btn.active,
+    .btn:hover,
+    .row2 .btn.active,
+    .btn:hover {
+      background-color: #3b8fff;
+      color: white;
+    }
+    
+    .row1 .btn {
+      width: 11%;
+      height: 50px;
+    }
+    
+    .row2 {
+      margin-top: 20px;
+      border: 2px solid lightgrey;
+    }
+    
+    .form-group {
+      padding-top: 10px;
+    }
+    
+    .row2 .col-sm-2,
+    .row2 .col-sm-5 {
+      margin-top: 15px;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+    
+    .row2 .dropdown .btn {
+      color: black;
+      background-color: white;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(204, 204, 204);
+      margin-left: 0px;
+      padding-right: 35px;
+      width: 160px;
+      height: 45px;
+    }
+    
+    .row2 .dropdown .btn.rowlist2 {
+      padding-right: 0px;
+    }
+    
+    .row3 {
+      height: 80px;
+      border-top: 2px solid lightgrey;
+      margin-top: 10px;
+    }
+    
+    .row3 .btn-group {
+      margin: 10px;
+    }
+    
+    .row3 .btn-group>.btn:first-child {
+      margin-right: 0px;
+      border-right: 1px solid #ccc;
+    }
+    
+    .row3 .btn-group>.btn:last-child {
+      border-left: 1px solid #ccc;
+    }
+    
+    .row3 .btn-group>.btn {
+      padding-left: 50px;
+      padding-right: 50px;
+      background-color: rgb(162, 160, 160);
+      border: rgb(162, 160, 160);
+      border-radius: 0px;
+    }
+    
+    .row3 .btn-group.btn-group1 {
+      float: right;
+    }
+    
+    .numpad {
+      width: 500px;
+      height: 250px;
+      display: flex;
+      flex-flow: row wrap;
+    }
+    
+    .row4 .numpad .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 0 33.3333%;
+      background-color: white;
+      color: black;
+      border: 1px solid #ccc;
+    }
+    
+    .row4 #numpad {
+      pointer-events: none;
+      opacity: 0.4;
+    }
+    
+    .row4 {
+      height: 350px;
+      background-color: rgb(244, 244, 244);
+      margin: 10px;
+    }
+    
+    .row4 .calheader {
+      font-weight: bold;
+      padding-top: 20px;
+      padding-left: 15px;
+      padding-bottom: 15px;
+    }
+    
+    .row4 .formsection {
+      background-color: #b5b0b0;
+      float: right;
+      margin-top: -55px;
+      height: 349px;
+      color: white;
+    }
+    
+    .formsection.col-sm-4 .form-group#1 {
+      background-color: rgb(156, 155, 155);
+      height: 70px;
+    }
+    
+    .formsection.col-sm-4 .form-group#2 {
+      background-color: rgb(170, 170, 170);
+      height: 70px;
+    }
+    
+    .formsection.col-sm-4 .form-group#3 {
+      background-color: rgb(183, 183, 183);
+      height: 70px;
+    }
+    
+    .formsection.col-sm-4 .form-group#4 {
+      background-color: rgb(194, 193, 193);
+      height: 70px;
+    }
+    
+    .red {
+      background-color: red;
+    }
+    
+    .material-switch > input[type="checkbox"] {
+      display: none;
+    }
+    
+    .material-switch > label {
+      cursor: pointer;
+      height: 0px;
+      position: relative;
+      width: 40px;
+    }
+    
+    .material-switch > label::before {
+      background: rgb(0, 0, 0);
+      box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      content: '';
+      height: 16px;
+      margin-top: -8px;
+      position: absolute;
+      opacity: 0.3;
+      transition: all 0.4s ease-in-out;
+      width: 40px;
+    }
+    
+    .material-switch > label::after {
+      background: rgb(255, 255, 255);
+      border-radius: 16px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+      content: '';
+      height: 24px;
+      left: -4px;
+      margin-top: -8px;
+      position: absolute;
+      top: -4px;
+      transition: all 0.3s ease-in-out;
+      width: 24px;
+    }
+    
+    .material-switch > input[type="checkbox"]:checked + label::before {
+      background: inherit;
+      opacity: 0.5;
+    }
+    
+    .material-switch > input[type="checkbox"]:checked + label::after {
+      background: inherit;
+      left: 20px;
+    }
+    
+    .originator,
+    .firm {
+      display: inline-block;
+    }
+    
+    .row5 {
+      height: 70px;
+      padding-top: 30px;
+      border: 1px solid lightgray;
+    }
+    
+    .originator {
+      margin-left: 50px;
+    }
+    
+    .material-switch.pull-right {
+      padding-left: 20px;
+      padding-right: 26px;
+    }
+    
+    .row5 button {
+      float: right;
+    }
+    
+    .finalBtn {
+      display: inline-block;
+      margin-bottom: 0;
+      font-weight: 400;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      background-image: none;
+      border: 2px solid transparent;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      border-radius: 4px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      color: #333;
+      background-color: #fff;
+      border-color: #ccc;
+      width: 12%;
+      margin-right: 18px;
+      margin-top: -10px;
+    }
+    
+    .captureInterest {
+      color: #fff;
+      background-color: rgb(162, 160, 160);
+      border-color: rgb(162, 160, 160);
+      margin-right: 30px;
+      width: 156px;
+      padding: 9px;
+      position: relative;
+      bottom: 8px;
+    }
+    
+    .clearAll {
+      margin-right: 30px;
+      width: 156px;
+      padding: 9px;
+      position: relative;
+      bottom: 8px;
+    }
+    
+    body h1 img {
+      margin: 10px 25px 10px;
+      height: 25px;
+    }
+    h1 {
+      margin-top: 0px;
+    }
+    .row3 #offer {
+      pointer-events: none;
+    }
+    
+    .row3 #offer.active {
+      background-color: #ca3131;
+    }
+    
+    .btn.btn-default.active.red {
+      background-color: #ca3131;
+    }
+    
+    #client a {
+      margin-left: 40px;
+    }
+    .material-switch > input[type="checkbox"]:checked + label::before{
+      background: #3b8fff !important;
+      opacity: 1 !important;
+    }
+    .material-switch > input[type="checkbox"]:checked + label::after{
+      background: #fff !important;
+    }
+    #modalClose{
+      float:right;
+    }
+    #modalDialog{
+      font-size: 16px;
+    }
+  </style>
 </head>
+
 <body>
-    <p><strong>Note:</strong> You will be redirected to the tutorialrepublic.com in 10 sec. You are not able to get back to this page by clicking the browser back button.</p>
+  <h1 class="header">
+        <img src="https://user-images.githubusercontent.com/37845982/59524646-15c56a80-8ef2-11e9-8b95-02cfa0c556a0.png" />
+    </h1>
+
+  <div class="row1">
+    <a href="#" id="marketView">MARKET VIEW</a>
+    <div id="client" class="client">CLIENT
+      <!--<span class="reset">Reset All</span>-->
+    </div>
+    <div id="clientButton">
+      <button class="btn btn-default" value="JPM" onclick="populateClient(value)">JPM</button>
+      <button class="btn btn-default" value="AE" onclick="populateClient(value)">AE</button>
+      <button class="btn btn-default" value="HSBC" onclick="populateClient(value)">HSBC</button>
+      <button class="btn btn-default" value="DBS" onclick="populateClient(value)">DBS</button>
+      <button class="btn btn-default" value="ABD" onclick="populateClient(value)">ABD</button>
+      <button class="btn btn-default" value="RBS" onclick="populateClient(value)">RBS</button>
+      <button class="btn btn-default" value="BOC" onclick="populateClient(value)">BOC</button>
+    </div>
+  </div>
+
+
+  <div class="row row2">
+    <div class="col-sm-2">CCY
+      <div class="dropdown">
+        <select class="selectpicker btn" data-style="btn-primary">
+          <option data-icon="glyphicon glyphicon-music">EUR</option>
+          <option data-icon="glyphicon glyphicon-star">ARS</option>
+          <option data-icon="glyphicon glyphicon-heart">USD</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-2">STRATEGY
+      <div class="dropdown">
+        <select class="selectpicker btn" data-style="btn-primary">
+          <option data-icon="glyphicon glyphicon-music">Outright</option>
+          <option data-icon="glyphicon glyphicon-star">Spread</option>
+          <option data-icon="glyphicon glyphicon-heart">Fly</option>
+          <option data-icon="glyphicon glyphicon-heart">Basis</option>
+          <option data-icon="glyphicon glyphicon-heart">Gadgets</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-5" id="clientButton1">TENOR
+      <br />
+      <button class="btn btn-default" value="6M" onClick="selectTenor(value)">6M</button>
+      <button class="btn btn-default" value="2Y" onClick="selectTenor(value)">2Y</button>
+      <button class="btn btn-default" value="5Y" onClick="selectTenor(value)">5Y</button>
+      <button class="btn btn-default" value="10Y" onClick="selectTenor(value)">10Y</button>
+      <button class="btn btn-default" value="20Y" onClick="selectTenor(value)">20Y</button>
+      <span class="dropdown">
+        <select style="width: 80px; height: 32px;" class="selectpicker btn rowlist2" data-style="btn-primary" onchange="selectTenor(value)">
+			  <optgroup label="List">
+			  <option data-icon="glyphicon glyphicon-music" value="6M" onClick="selectTenor(value)">LIST</option>
+			  <option data-icon="glyphicon glyphicon-star" value="1Y" onClick="selectTenor(value)">1Y</option>
+			  <option data-icon="glyphicon glyphicon-heart" value="3Y" onClick="selectTenor(value)">3Y</option>
+			  <option data-icon="glyphicon glyphicon-heart" value="7Y" onClick="selectTenor(value)">7Y</option>
+			  <option data-icon="glyphicon glyphicon-heart" value="11Y" onClick="selectTenor(value)" >11Y</option>
+			</select>
+		</span>
+      <br />
+      <button class="btn btn-default" value="1Y" onClick="selectTenor(value)">1Y</button>
+      <button class="btn btn-default" value="3Y" onClick="selectTenor(value)">3Y</button>
+      <button class="btn btn-default" value="7Y" onClick="selectTenor(value)">7Y</button>
+      <button class="btn btn-default" value="12Y" onClick="selectTenor(value)">12Y</button>
+      <button class="btn btn-default" value="30Y" onClick="selectTenor(value)">30Y</button>
+      <span class="dropdown">
+            <select  style="width: 80px; height: 32px;" class="selectpicker btn rowlist2" data-style="btn-primary" onchange="selectTenor(value)">
+			  <optgroup label="List">
+			  <option data-icon="glyphicon glyphicon-music" value="2Y" >LIST</option>
+			  <option data-icon="glyphicon glyphicon-star" value="4Y" >4Y</option>
+			  <option data-icon="glyphicon glyphicon-heart" value="6Y" >6Y</option>
+			  <option data-icon="glyphicon glyphicon-heart" value="8Y" >8Y</option>
+			  <option data-icon="glyphicon glyphicon-heart" value="10Y" >10Y</option>
+			</select>
+          </span>
+    </div>
+    <div class="col-sm-2">INDEX
+      <div class="dropdown">
+        <select class="selectpicker btn" data-style="btn-primary">
+          <option data-icon="glyphicon glyphicon-music">6M EURIBOR</option>
+          <option data-icon="glyphicon glyphicon-star">7M EURIBOR</option>
+          <option data-icon="glyphicon glyphicon-heart">8M EURIBOR</option>
+          <option data-icon="glyphicon glyphicon-heart">9M EURIBOR</option>
+          <option data-icon="glyphicon glyphicon-heart">5M EURIBOR</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row3">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary" id="bidd">BID</button>
+      <button type="button" class="btn btn-primary" id="offer">OFFER</button>
+    </div>
+    <div class="btn-group btn-group1">
+      <button type="button" class="btn btn-primary">SIZE</button>
+    </div>
+  </div>
+
+
+  <div class="row4">
+    <div class="calheader">BID</div>
+    <div class="playground">
+      <div id="numpad" class="numpad col-sm-8">
+        <div class="button" value="1" onClick="selectBid('1')">1</div>
+        <div class="button" value="2" onClick="selectBid('2')">2</div>
+        <div class="button" value="3" onClick="selectBid('3')">3</div>
+        <div class="button" value="4" onClick="selectBid('4')">4</div>
+        <div class="button" value="5" onClick="selectBid('5')">5</div>
+        <div class="button" value="6" onClick="selectBid('6')">6</div>
+        <div class="button" value="7" onClick="selectBid('7')">7</div>
+        <div class="button" value="8" onClick="selectBid('8')">8</div>
+        <div class="button" value="9" onClick="selectBid('9')">9</div>
+        <div class="button" value="0" onClick="selectBid('0')">0</div>
+        <div class="button" value="." onClick="selectBid('.')">.</div>
+        <div class="button" onclick="DeleteBid()">-</div>
+      </div>
+    </div>
+    <div class="formsection col-sm-4">
+      <form>
+        <div class="form-group" id="1">
+          <label for="formGroupExampleInput">Product</label>
+          <input type="text" class="form-control" id="product" placeholder="0 Yrs" />
+        </div>
+        <div class="form-group" id="2">
+          <label for="formGroupExampleInput2">BID</label>
+          <input type="text" class="form-control" id="bid" placeholder="0" />
+        </div>
+        <div class="form-group" id="3">
+          <label for="formGroupExampleInput">Size</label>
+          <input type="text" value="50mio" class="form-control" id="size" placeholder="" />
+        </div>
+        <div class="form-group" id="4">
+          <label for="formGroupExampleInput2">Client</label>
+          <input type="text" class="form-control" id="clientInput" placeholder="" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row5">
+    <span class="originator">ORIGINATOR
+			<span class="material-switch pull-right">
+                <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>
+                <label for="someSwitchOptionDefault" class="label-default"></label>
+            </span>
+    </span>
+    <span class="firm">FIRM
+			<span class="material-switch pull-right">
+                <input id="someSwitchOptionDefault2" name="someSwitchOption002" type="checkbox"/>
+                <label for="someSwitchOptionDefault2" class="label-default"></label>
+            </span>
+    </span>
+    <button type="button" class="finalBtn captureInterest" data-toggle="modal" data-target="#myModal">CAPTURE INTEREST</button>
+    <button type="button" class="finalBtn clearAll">CLEAR ALL</button>
+  </div>
+
+
+
+  <!-- modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <p id="modalDialog">Your Interest has been captured successfully.</p>
+          <span><button type="button" id="modalClose" class="btn btn-default" data-dismiss="modal">Close</button></span>
+        </div>
+          
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Get the container element
+    var btnContainer = document.getElementById("clientButton");
+
+    // Get all buttons with class="btn" inside the container
+    var btns = btnContainer.getElementsByClassName("btn");
+    var btnActive = btnContainer.getElementsByClassName("btn active");
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (var i = 0; i < btns.length; i++) {
+
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+
+        // If there's no active class
+        if (current.length > 0) {
+          if ($("#offer").hasClass('active')) {
+            if (btnActive.length >= 2) {
+              return false;
+            } else {
+              var redClass = true;
+            }
+          } else
+            current[0].className = current[0].className.replace(" active", "");
+        }
+
+        // Add the active class to the current/clicked button
+        this.className += " active";
+        if (redClass === true) {
+          //this.className += " red";
+          //$(this).css('background-color','#ca3131');
+          //$(this).addClass('red');
+          this.className += " red";
+          $(".finalBtn.captureInterest").removeAttr("disabled");
+          $(".finalBtn.captureInterest").addClass("active");
+          $(".finalBtn.captureInterest").css("color", "white");
+          $(".finalBtn.captureInterest").css("background-color", "#002e61");
+        }
+      });
+
+
+    }
+
+    $('.row2 .btn').bind("click", function(event) {
+      event.preventDefault();
+      if ($('.active').length > 0) {
+        $('.row2 .btn.active').removeClass('active');
+        $(this).addClass('active');
+      } else {
+        $(this).addClass("active");
+      }
+    });
+
+
+    function selectTenor(input) {
+      document.getElementById("product").value = input;
+
+    }
+    var dummy = '';
+
+    function selectBid(input) {
+      if (input == "0") {
+        dummy = input + '.';
+        // if(document.getElementById("bid").value !== null){
+        // 	var value = document.getElementById("bid").value;
+        // 	dummy = value+input;
+        // 	}
+        // else
+        // 	dummy = 0;
+        // }
+        // dummy= dummy+input;
+        // document.getElementById("bid").value = dummy;
+
+      } else {
+        dummy = dummy + input;
+      }
+      document.getElementById("bid").value = dummy;
+    }
+
+    function DeleteBid() {
+      dummy = '';
+      document.getElementById("bid").value = '';
+
+    }
+
+    $("#bidd").click(function() {
+      $(this).addClass("active");
+      $(this).css("background-color","#3b8fff");
+    });
+
+    $("#offer").click(function() {
+      var tempArr = [];
+      $('input[type=text').each(function() {
+        var text_value = $(this).val();
+        if (text_value != "") {
+          tempArr.push(text_value);
+          if (tempArr.length == 4)
+            $("#offer").addClass("active");
+        } else {
+          return false;
+        }
+      })
+    });
+    $('#bidd').click(function() {
+      $('#offer').css("pointer-events", "auto");
+      $('#numpad').css("pointer-events", "auto");
+      $('#numpad').css("opacity", "1");
+    });
+
+    function populateClient(input) {
+      if ($('#clientButton button').not('.red').length == 7)
+        document.getElementById("clientInput").value = input;
+      //$(".finalBtn.captureInterest").removeAttr("disabled");
+      // $(".finalBtn.captureInterest").addClass("active");
+      // $(".finalBtn.captureInterest").css("color","white");
+      // $(".finalBtn.captureInterest").css("background-color","#3b8fff");
+
+    }
+
+    $(".clearAll").click(function() {
+      if ($('.btn').hasClass('active'))
+        $('.btn').removeClass('active');
+      $('.btn').removeClass('red');
+      $('#bidd').css("background-color","rgb(162, 160, 160)");
+      $('#numpad').css("pointer-events", "none");
+      $('#numpad').css("opacity", "0.4");
+      DeleteBid();
+      document.getElementById("clientInput").value = "";
+      document.getElementById("product").value = "0Y";
+      document.getElementById("bid").value = "0";
+    });
+
+    $(".finalBtn.captureInterest").attr("disabled", "disabled");
+
+    $(".modal-content .btn").click(function() {
+      if ($('.btn').hasClass('active'))
+        $('.btn').removeClass('active');
+      $('.btn').removeClass('red');
+      document.getElementById("clientInput").value = "";
+      document.getElementById("product").value = "0Y";
+      document.getElementById("bid").value = "0";
+      $('#bidd').css("background-color","rgb(162, 160, 160)");
+      $('#numpad').css("pointer-events", "none");
+      $('#numpad').css("opacity", "0.4");
+      DeleteBid();
+      $(".finalBtn.captureInterest").removeClass("active");
+      $(".finalBtn.captureInterest").attr("disabled", "disabled");
+      $(".finalBtn.captureInterest").css("color", "#fff");
+      $(".finalBtn.captureInterest").css("background-color", "rgb(162,160,160)");
+      $(".finalBtn.captureInterest").css("border-color", "rgb(162,160,160)");
+    });
+    $("#marketView").click(function(){
+      window.location.href = "marketview.html";
+    })
+  </script>
+
 </body>
+
 </html>
-window.location.href = "http://www.w3schools.com";
