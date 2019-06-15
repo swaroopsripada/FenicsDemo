@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#myTable').dataTable();
+    });
+  </script>
+  <style>
+    /* Styles go here */
+    
+    /* #filterBtn {
+      align: right;
+    } */
+    /*table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+bottom: .5em;
+}*/
+    
+    .body {
+      background-color: #eef0f4;
+    }
+    
+    .row .btn,
+    div .btn {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      font-weight: normal;
+      margin: 3px;
+    }
+    
+    .col-sm-6 {
+      font-weight: bold;
+    }
+    
+    .table.table-striped {
+      background-color: white;
+    }
+    
+    .top {
+      padding: 0 20px 40px 20px;
+      background-color: white;
+    }
+    
+    .header {
+      background-color: #002e61;
+    }
+    
+    body h1 img {
+      margin: 10px 25px 10px;
+      height: 25px;
+    }
+    h1 {
+      margin-top: 0px;
+    }
+    #filterBtn {
+      background-color: #002e61;
+      color: white;
+    }
+    
+    #dtBasicExample {
+      display: none;
+    }
+    
+    .row .btn.active {
+      background-color: #3b8fff;
+      color: white;
+    }
+    .backBtn{
+      float: right;
+      margin: 20px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body class="body">
+  <h1 class="header">
+        <img src="https://user-images.githubusercontent.com/37845982/59524646-15c56a80-8ef2-11e9-8b95-02cfa0c556a0.png" />
+    </h1>
+  <div class="top" style="width:100%">
+    <div style="float:left">
+      <label class="market" style="padding-top: 10px;color: #002e61;">MARKET VIEW</label>
+    </div>
+    <div style="float:right">
+      <label>CCY</label>
+      <select style="padding-left: 5px">
+        <option value="EUR">EUR</option>
+        <option value="ARS">ARS</option>
+        <option value="USD">USD</option>
+        <option value="INR">INR</option>
+      </select>
+      <button type="button" id="filterBtn" class="btn btn-primary" style="margin-left:18px">CLEAR ALL FILTERS</button>
+    </div>
+  </div>
+  <div style="padding: 20px 20px 5px 20px;">
+    <div class="row">
+      <div class="col-sm-6" style="float:left">STRATEGY</div>
+      <div class="col-sm-6" style="float:right">STATUS</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6" style="float:left" id="strategyId">
+        <button type="button" class="btn" onClick="strategyBtn('OUTRIGHT')">OUTRIGHT</button>
+        <button type="button" class="btn" onClick="strategyBtn('SPREAD')">SPREAD</button>
+        <button type="button" class="btn" onClick="strategyBtn('FLY')">FLY</button>
+        <button type="button" class="btn" onClick="strategyBtn('BASIS')">BASIS</button>
+        <button type="button" class="btn" onClick="strategyBtn('GADGET')">GADGET</button>
+      </div>
+      <div class="col-sm-6" style="float:right" id="statusId">
+        <button type="button" class="btn" onClick="statusBtn('DRAFT')">DRAFT</button>
+        <button type="button" class="btn" onClick="statusBtn('LIVE')">LIVE</button>
+        <button type="button" class="btn" onClick="statusBtn('SENT')">SENT</button>
+        <button type="button" class="btn" onClick="statusBtn('ARCHIVED')">ARCHIVED</button>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 20px 20px 5px 20px;">
+    <div class="row">
+      <div class="col-sm-6">LAST MODIFIED</div>
+      <div class="col-sm-6">BROKER</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <button type="button" class="btn">15MIN</button>
+        <button type="button" class="btn">1HR</button>
+      </div>
+      <div class="col-sm-6">
+        <button type="button" class="btn">BROKER1</button>
+        <button type="button" class="btn">BROKER2</button>
+        <button type="button" class="btn">BROKER3</button>
+      </div>
+    </div>
+  </div>
+  <div style="padding:20px">
+    <div>
+      <label>CLIENT</label>
+    </div>
+    <div>
+      <button type="button" class="btn" onClick="clientBtn('JPM')">JPM</button>
+      <button type="button" class="btn" onClick="clientBtn('AE')">AE</button>
+      <button type="button" class="btn" onClick="clientBtn('HSBC')">HSBC</button>
+      <button type="button" class="btn" onClick="clientBtn('DBS')">DBS</button>
+      <button type="button" class="btn" onClick="clientBtn('ADB')">ADB</button>
+    </div>
+  </div>
+  <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th class="th-sm">CLIENT
+        </th>
+        <th class="th-sm">STRATEGY
+        </th>
+        <th class="th-sm">TENOR
+        </th>
+        <th class="th-sm">INDEX
+        </th>
+        <th class="th-sm">BSZ
+        </th>
+        <th class="th-sm">BID
+        </th>
+        <th class="th-sm">OFFER
+        </th>
+        <th class="th-sm">OSZ
+        </th>
+        <th class="th-sm">LAST MODIFIED
+        </th>
+        <th class="th-sm">STATUS
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="clientTableId">JPM</td>
+        <td id="strategyTableId"></td>
+        <td>5M</td>
+        <td>6M EURIBOR</td>
+        <td>-</td>
+        <td>324.0</td>
+        <td>221.0</td>
+        <td>-</td>
+        <td>2 min ago</td>
+        <td id="statusTableId"></td>
+      </tr>
+    </tbody>
+
+  </table>
+  <div>
+    <a href="index.html" class="backBtn">Back</a>
+  </div>
+  <script>
+    var btnContainer = document.getElementById("strategyId");
+
+    // Get all buttons with class="btn" inside the container
+    var btns = btnContainer.getElementsByClassName("btn");
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (var i = 0; i < btns.length; i++) {
+
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+
+        // If there's no active class
+        if (current.length > 0) {
+          current[0].className = current[0].className.replace(" active", "");
+        }
+
+        // Add the active class to the current/clicked button
+        this.className += " active";
+
+
+      });
+    }
+
+    function strategyBtn(btnValue) {
+      if (document.getElementById('strategyTableId').innerText != '') {
+        document.getElementById('strategyTableId').innerText = '';
+
+      }
+      var td1 = document.getElementById('strategyTableId');
+      var text = document.createTextNode(btnValue);
+      td1.appendChild(text);
+    }
+
+    function statusBtn(btnValue) {
+      if (document.getElementById('statusTableId').innerText != '') {
+        document.getElementById('statusTableId').innerText = '';
+
+      }
+      var td2 = document.getElementById('statusTableId');
+      var text2 = document.createTextNode(btnValue);
+      td2.appendChild(text2);
+    }
+
+    function clientBtn(btnValue) {
+      if (document.getElementById('clientTableId').innerText != '') {
+        document.getElementById('clientTableId').innerText = '';
+
+      }
+      var td2 = document.getElementById('clientTableId');
+      var text2 = document.createTextNode(btnValue);
+      td2.appendChild(text2);
+      $('#dtBasicExample').css("display", "table")
+    }
+  </script>
+</body>
+
+</html>
