@@ -1,1 +1,139 @@
-This is the redirected login page 
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login Page</title>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <style>
+    .header {
+      background-color: #002e61;
+    }
+    
+    .card-body {
+      background-color: white;
+    }
+    
+    .card {
+      border: none;
+    }
+    
+    body {
+      background-image: url("https://user-images.githubusercontent.com/37845982/59524767-53c28e80-8ef2-11e9-99a1-934795d35d2f.png");
+      color: rgb(255, 255, 255);
+      margin: 0px;
+    }
+    
+    body h1 img {
+      margin: 10px 25px 10px;
+      height: 25px;
+    }
+    
+    h1 {
+      margin-top: 0px;
+    }
+    
+    div.well {
+      height: 250px;
+    }
+    
+    .Absolute-Center {
+      margin: auto;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: white;
+    }
+    
+    .Absolute-Center.is-Responsive {
+      width: 50%;
+      height: 35%;
+      min-width: 200px;
+      max-width: 400px;
+      padding: 40px 40px 40px 40px;
+      text-align: center;
+      border: 1px solid grey;
+      box-shadow: 5px 7px 18px 3px grey;
+    }
+    
+    #logo-container {
+      margin: auto;
+      margin-bottom: 10px;
+      width: 400px;
+      height: 30px;
+      /* background-image:url('Assets/Blue_logo.png'); */
+      border-bottom: 1px solid #ccc;
+      background-repeat: no-repeat;
+    }
+    
+    #logo-container img {
+      height: 25px;
+    }
+    
+  
+    
+    .form-group.input-group .form-control {
+      padding: 10px;
+      width: 250px;
+      margin-top: 25px;
+      font-size: 16px;
+    }
+    
+    .form-group .btn.btn-block {
+      width: 275px;
+      border-radius: 5px;
+      margin-top: 40px;
+      background-color: #002e61;
+      color: #fff;
+      height: 40px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <h1 class="header">
+				<img src="https://user-images.githubusercontent.com/37845982/59524646-15c56a80-8ef2-11e9-8b95-02cfa0c556a0.png" alt="Fenics"/>
+			</h1>
+  <div class="container">
+    <div class="row">
+      <div class="Absolute-Center is-Responsive">
+        <div id="logo-container">
+          <img src="https://user-images.githubusercontent.com/37845982/59523465-02fd6680-8eef-11e9-8374-ddb50f115f02.png" />
+        </div>
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+          <form action="" id="loginForm">
+            <div class="form-group input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input class="form-control" type="text" id="userName" name='username' placeholder="User ID / Email" />
+            </div>
+            <div class="form-group input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input class="form-control" type="password" id="pwd" name='password' placeholder="Password" />
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-def btn-block" onClick="validateForm()">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function validateForm() {
+      if ((document.getElementById('userName').value == 'FenicsDemo' || document.getElementById('userName').value == 'DemoFenics') && document.getElementById('pwd').value == 'Fenics@1234') {
+        window.location.href = "index.html";
+      } else {
+        alert('Please check your credentials');
+      }
+    }
+  </script>
+</body>
+
+</html>
